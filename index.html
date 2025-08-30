@@ -1,546 +1,576 @@
-<!DOCTYPE html>
-
+<DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>A T H E X</title>
-
-    <meta name="description" content="Sim Data, Sim Database, Sim details ownership, VIP Sim Database.">
-
-    
-
-    <!-- VIP Design Fonts -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-
+    <title>ATHEX SIM DATA</title>
     <style>
-
-        /* --- FINAL VIP DESIGN - Dark Neumorphism --- */
-
-        :root {
-
-            --primary-green: #25D366;
-
-            --glow-color: rgba(37, 211, 102, 0.7);
-
-            --bg-color: #2c2f33;
-
-            --light-shadow-color: #373a3f;
-
-            --dark-shadow-color: #212326;
-
-            --text-color: #e0e0e0;
-
-            --text-color-muted: #888;
-
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* --- Basic Reset & Base Styling --- */
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html, body {
-
-            font-family: 'Poppins', sans-serif;
-
-            background-color: var(--bg-color);
-
-            color: var(--text-color);
-
-            text-align: center;
-
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
-
-            max-width: 700px;
-
+            max-width: 800px;
             margin: 0 auto;
-
             padding: 20px;
-
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-
-        /* --- VIP Header --- */
 
         .header {
-
-            font-size: 2.5em;
-
-            font-weight: 700;
-
-            color: var(--primary-green);
-
-            text-shadow: 0 0 8px var(--glow-color);
-
-            margin: 30px 0;
-
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #333;
+            margin-bottom: 40px;
         }
 
-        /* --- VIP Card Style --- */
-
-        .card {
-
-            background: var(--bg-color);
-
-            border-radius: 20px;
-
-            box-shadow: 8px 8px 16px var(--dark-shadow-color), -8px -8px 16px var(--light-shadow-color);
-
-            padding: 30px;
-
-            margin-bottom: 30px;
-
-            text-align: left;
-
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .card h2 {
-
-            text-align: center;
-
-            margin-bottom: 25px;
-
-            font-weight: 600;
-
-        }
-
-        /* --- VIP Form Elements --- */
-
-        #query {
-
-            width: 100%;
-
-            padding: 18px;
-
-            border: none;
-
-            border-radius: 12px;
-
-            font-size: 1em;
-
-            text-align: center;
-
-            background-color: var(--bg-color);
-
-            color: var(--text-color);
-
-            box-shadow: inset 4px 4px 8px var(--dark-shadow-color), inset -4px -4px 8px var(--light-shadow-color);
-
-        }
-
-        #query:focus {
-
-            outline: none;
-
-            box-shadow: 0 0 0 2px var(--primary-green), inset 2px 2px 4px var(--dark-shadow-color), inset -2px -2px 4px var(--light-shadow-color);
-
-        }
-
-        #query::placeholder { color: var(--text-color-muted); }
-
-        .search-btn {
-
-            width: 100%;
-
-            margin-top: 20px;
-
-            padding: 16px;
-
-            font-size: 1.2em;
-
-            font-weight: 600;
-
-            background: var(--primary-green);
-
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
             color: #000;
+        }
 
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff88;
+            letter-spacing: 2px;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #00ff88;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #888;
+            margin-bottom: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .search-section {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 24px;
+            color: #00ff88;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .search-icon {
+            width: 30px;
+            height: 30px;
+            background: #00ff88;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .input-group {
+            margin-bottom: 30px;
+        }
+
+        .input-label {
+            display: block;
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .phone-input-container {
+            display: flex;
+            gap: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #333;
+            transition: border-color 0.3s ease;
+        }
+
+        .phone-input-container:focus-within {
+            border-color: #00ff88;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .country-code {
+            background: #222;
+            color: #fff;
+            padding: 15px 20px;
+            font-size: 16px;
             border: none;
+            outline: none;
+            min-width: 80px;
+            text-align: center;
+        }
 
-            border-radius: 12px;
+        .phone-input {
+            flex: 1;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+        }
 
+        .phone-input::placeholder {
+            color: #666;
+        }
+
+        .search-button {
+            width: 100%;
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            color: #000;
+            border: none;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 15px;
             cursor: pointer;
-
-            transition: all 0.2s ease;
-
-            box-shadow: 4px 4px 10px var(--dark-shadow-color), -4px -4px 10px var(--light-shadow-color), 0px 0px 15px var(--glow-color);
-
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        .search-btn:hover {
-
+        .search-button:hover {
             transform: translateY(-2px);
-
-            box-shadow: 6px 6px 12px var(--dark-shadow-color), -6px -6px 12px var(--light-shadow-color), 0px 0px 25px var(--glow-color);
-
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
         }
 
-        .warning { color: var(--text-color-muted); margin-top: 15px; font-size: 0.9em; text-align: center; }
+        .search-button:active {
+            transform: translateY(0);
+        }
 
-        /* --- VIP Results & Notifications --- */
+        .search-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
 
-        #results { margin-top: 20px; }
+        .loading {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #000;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .result-section {
+            margin-top: 40px;
+            display: none;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
 
         .result-box {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-            background-color: var(--bg-color);
+        .result-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.2);
+        }
 
-            border-radius: 12px;
-
-            padding: 20px;
-
+        .result-box-title {
+            color: #00ff88;
+            font-size: 16px;
+            font-weight: bold;
             margin-bottom: 15px;
-
-            box-shadow: inset 4px 4px 8px var(--dark-shadow-color), inset -4px -4px 8px var(--light-shadow-color);
-
-            animation: fadeIn 0.5s ease;
-
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .result-box p {
-
-            font-size: 1rem;
-
-            margin: 10px 0;
-
-            display: flex;
-
-            justify-content: space-between;
-
+        .result-box-data {
+            color: #fff;
+            font-size: 18px;
+            line-height: 1.6;
+            word-wrap: break-word;
         }
 
-        .label { font-weight: 600; color: var(--text-color-muted); margin-right: 15px; }
-
-        .result-box .value { font-family: 'Source Code Pro', monospace; color: var(--text-color); }
-
-        #noData {
-
-            margin-top: 20px;
-
+        .error-section {
+            margin-top: 30px;
             padding: 20px;
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff4444;
+            border-radius: 15px;
+            display: none;
+        }
 
-            border-radius: 12px;
+        .error-title {
+            color: #ff4444;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
 
-            background: var(--bg-color);
-
-            box-shadow: inset 4px 4px 8px var(--dark-shadow-color), inset -4px -4px 8px var(--light-shadow-color);
-
-            color: var(--text-color-muted);
-
-            line-height: 1.7;
-
+        .footer {
             text-align: center;
-
+            padding: 40px 0 20px;
+            border-top: 1px solid #333;
+            margin-top: 60px;
         }
 
-        #noData a {
+        .footer-text {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
 
-            display: block;
-
-            margin-top: 15px;
-
-            color: var(--primary-green);
-
-            font-weight: 600;
-
+        .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #00ff88;
             text-decoration: none;
-
+            font-weight: 600;
+            transition: color 0.3s ease;
         }
 
-        /* --- Paid Services Section --- */
-
-        .service-list {
-
-            list-style-type: none;
-
-            padding: 0;
-
-            font-size: 1rem;
-
+        .whatsapp-link:hover {
+            color: #00cc6a;
         }
 
-        .service-list li {
-
-            padding: 12px 0;
-
-            border-bottom: 1px solid var(--dark-shadow-color);
-
+        .whatsapp-icon {
+            width: 24px;
+            height: 24px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 12px;
         }
 
-        .service-list li::before {
-
-            content: "%5";
-
-            margin-right: 10px;
-
-            color: var(--primary-green);
-
-        }
-
-        .service-list li:last-child { border-bottom: none; }
-
-        
-
-        /* --- Disclaimer & Contact --- */
-
-        .card h3 { color: var(--text-color); margin-bottom: 15px; border-bottom: 1px solid var(--dark-shadow-color); padding-bottom: 10px; }
-
-        .card p { line-height: 1.7; color: var(--text-color-muted); }
-
-        .contact-list { list-style: none; padding: 0; }
-
-        .contact-list li { margin: 10px 0; }
-
-        .contact-list i { margin-right: 10px; color: var(--primary-green); width: 20px; text-align: center; }
-
-        .contact-list a { color: var(--text-color); text-decoration: none; transition: color 0.2s; }
-
-        .contact-list a:hover { color: var(--primary-green); }
-
-        /* --- Footer --- */
-
-        footer { padding: 30px 20px; text-align: center; border-top: 1px solid var(--dark-shadow-color); margin-top: 20px; }
-
-        footer p { color: var(--text-color-muted); }
-
-        .hidden { display: none; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-    </style>
-
-</head>
-
-<body>
-
-    <div class="container">
-
-        <div class="header">ATHEX SIM DATA</div>
-
-        <div class="card">
-
-            <input type="text" id="query" placeholder="Enter Mobile e.g. 030000XXXXX" />
-
-            <button class="search-btn" onclick="searchData()">Search <i class="fa fa-search"></i></button>
-
-            <p class="warning">Enter Number Like This: 030000XXXXX</p>
-
-        </div>
-
-        <div id="results"></div>
-
-        <p class="hidden" id="noData"></p>
-
-        <div class="card services">
-
-            <h2>Paid Services</h2>
-
-            <ul class="service-list">
-
-                <li>Fresh Sim Details</li>
-
-                <li>CNIC Numbers Check</li>
-
-                <li>WEB DEVELOPMENT COURSE</li>
-
-                <li>ETHICAL HACKING COURSE</li>
-
-                <li>IP GRABBING</li>
-
-                <li>Mobile IMEI Tracking</li>
-
-                <li>SIM Live Location Trace</li>
-
-                <li>OSINT</li>
-
-                <li>PHONE HACKING </li>
-
-                <li>PAID SOFTWARE & TOOL'S IN CHEAP PRICE</li>
-
-                <li><strong>More Services Available...</strong></li>
-
-            </ul>
-
-        </div>
-
-        
-
-        <div class="card">
-
-             <h3> Disclaimer</h3>
-
-             <p>All services and website are for educational, security, and verification purposes only. We do not support or promote illegal access or misuse of data.</p>
-
-        </div>
-
-        <div class="card">
-
-             <h3>Contact Us</h3>
-
-             <ul class="contact-list">
-
-                <li><i class="fa fa-phone"></i><a href="tel:+923475549695" -envelope"></i><a
-
-             </ul>
-
-        </div>
-
-    </div>
-
-    
-
-    <footer>
-
-        <p>Copyright © 2025 A T H E X . All Rights Reserved.</p>
-
-    </footer>
-
-    <script>
-
-        // --- YOUR JAVASCRIPT LOGIC IS PRESERVED ---
-
-        const whatsappLink = 'https://wa.me/923475549695';
-
-        function searchData() {
-
-            const query = document.getElementById("query").value.trim().replace(/\s+/g, '');
-
-            const url = `https://allnetworkdata.com/?number=$search_term=${encodeURIComponent(query)}`;
-
-            const resultsContainer = document.getElementById("results");
-
-            const noData = document.getElementById("noData"); 
-
-            
-
-            resultsContainer.innerHTML = '';
-
-            noData.classList.remove('hidden');
-
-            noData.textContent = 'Searching...';
-
-            
-
-            if (query === '') {
-
-                noData.classList.remove('hidden');
-
-                noData.textContent = ' Please enter a valid number';
-
-                return;
-
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
             }
 
-            fetch(url)
+            .title {
+                font-size: 36px;
+                letter-spacing: 2px;
+            }
 
-                .then(res => res.json())
+            .subtitle {
+                font-size: 16px;
+                letter-spacing: 2px;
+            }
 
-                .then(data => {
+            .search-section {
+                padding: 30px 20px;
+            }
 
-                    let output = '';
+            .phone-input-container {
+                flex-direction: column;
+            }
 
-                    const numbers = new Set(); // Use a Set for faster unique checks
-
-                    for (const network in data) {
-
-                        const records = data[network];
-
-                        if (Array.isArray(records)) {
-
-                            records.forEach(entry => {
-
-                                const mobile = entry.Mobile || entry.SUB_NO || '';
-
-                                if (!mobile || numbers.has(mobile)) return;
-
-                                numbers.add(mobile);
-
-                                const name = entry.Name || entry.NAME || 'N/A';
-
-                                const cnic = entry.CNIC || entry.NIC || 'N/A';
-
-                                const address = entry.Address || entry.ADDRESS || 'N/A';
-
-                                output += `
-
-                                <div class="result-box">
-
-                                    <p><span class="label">Mobile:</span> <span class="value">${mobile}</span></p>
-
-                                    <p><span class="label">Name:</span> <span class="value">${name}</span></p>
-
-                                    <p><span class="label">ID Card:</span> <span class="value">${cnic}</span></p>
-
-                                    <p><span class="label">Address:</span> <span class="value">${address}</span></p>
-
-                                </div>`;
-
-                            });
-
-                        }
-
-                    }
-
-                    if (output) {
-
-                        resultsContainer.innerHTML = output;
-
-                        noData.classList.add('hidden');
-
-                    } else {
-
-                        noData.innerHTML = `
-
-                        %7%3 %6%5%8%1 %9%7 %1%1%C%4 %1%1%6%6%7%6%2 %8%7%4%7 %8%C%9%7 %4%C%6%7 %E%1%2 %F%7 %C%3 %9%C %1%C%3 500 %1%8%E%2 %1%2%4
-
-                        <br> %1%1%6%6%7%6%2 %3%2 %7%3 %6%5%8%1 %9%C %8%C%9%C%4 %4%C%6%2 %9%2%4%6%2 %7%C%8%5%6 %9%2 %8%7%9%3 %7%C%E %6%5%8%1 %E%1 %1%7%8%7%1 %9%1%C%A%4
-
-                        <br><a href="${whatsappLink}" target="_blank">03475549695 %8%7%9%3 %7%C%E %1%7%8%7%2 %9%2 %4%C%2 %7%3 %6%5%8%1 %E%1 %9%4%9 %9%1%C%A</a>`;
-
-                    }
-
-                })
-
-                .catch(err => {
-
-                    console.error("API error:", err);
-
-                    noData.classList.remove('hidden');
-
-                    noData.innerHTML = `contact on WhatsApp for other service's .`;
-
-                });
-
+            .country-code {
+                border-radius: 0;
+            }
         }
 
-    </script>
+        @media (max-width: 480px) {
+            .title {
+                font-size: 28px;
+                letter-spacing: 1px;
+            }
 
-    <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .search-section {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">♦</div>
+                <div class="logo-text">ATHEX SIM DATA</div>
+            </div>
+            <div class="status">
+                <div class="status-dot"></div>
+                <span>SYSTEM ONLINE</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <h1 class="title">PAK SIM DATABASE</h1>
+            <p class="subtitle">ADVANCED SIM DATA TOOL </p>
+            <p class="description">
+                SIM DATA INFORMATION TOOL CREATED BY ATHEX 
+            </p>
+
+            <div class="search-section">
+                <div class="search-title">
+                    <div class="search-icon">🔍</div>
+                    <span>DATABASE SEARCH</span>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">MOBILE NUMBER</label>
+                    <div class="phone-input-container">
+                        <input type="text" class="country-code" value="+92" readonly>
+                        <input type="tel" class="phone-input" id="phoneNumber" placeholder="3012345678" maxlength="10">
+                    </div>
+                </div>
+
+                <button class="search-button" id="searchButton">
+                    <div class="loading" id="loading"></div>
+                    <span id="buttonText">SEARCH DATA</span>
+                </button>
+            </div>
+
+            <div class="result-section" id="resultSection">
+                <div class="result-grid">
+                    <div class="result-box">
+                        <div class="result-box-title">NAME</div>
+                        <div class="result-box-data" id="resultName">-</div>
+                    </div>
+                    <div class="result-box">
+                        <div class="result-box-title">CNIC Number</div>
+                        <div class="result-box-data" id="resultCnic">-</div>
+                    </div>
+                    <div class="result-box" style="grid-column: 1 / -1;">
+                        <div class="result-box-title">ADDRESS</div>
+                        <div class="result-box-data" id="resultAddress">-</div>
+                    </div>
+                    <div class="result-box" style="grid-column: 1 / -1;">
+                        <div class="result-box-title">ALL NUMBERS</div>
+                        <div class="result-box-data" id="resultNumbers">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="error-section" id="errorSection">
+                <div class="error-title">Error</div>
+                <div class="result-data" id="errorData"></div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p class="footer-text">BLACK HAT ATHEX</p>
+            <a href="https://chat.whatsapp.com/H31yJVC0xXnKUBz5BCqgZH?mode=ems_copy_c" class="whatsapp-link" target="_blank">
+                <div class="whatsapp-icon">📱</div>
+                <span>CLICK ME </span>
+            </a>
+        </footer>
+    </div>
 
     <script>
+        const phoneInput = document.getElementById('phoneNumber');
+        const searchButton = document.getElementById('searchButton');
+        const loading = document.getElementById('loading');
+        const buttonText = document.getElementById('buttonText');
+        const resultSection = document.getElementById('resultSection');
+        const errorSection = document.getElementById('errorSection');
+        const errorData = document.getElementById('errorData');
 
-      var wa_btnSetting = {"btnColor":"#25D366","ctaText":"","cornerRadius":40,"marginBottom":20,"marginLeft":20,"marginRight":20,"btnPosition":"right","whatsAppNumber":"+923475549695","welcomeMessage":"Hey ATHEX I NEED YOUR HELP","zIndex":999999,"btnColorScheme":"light"};
+        const resultName = document.getElementById('resultName');
+        const resultCnic = document.getElementById('resultCnic');
+        const resultAddress = document.getElementById('resultAddress');
+        const resultNumbers = document.getElementById('resultNumbers');
 
-      window.onload = () => {
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 10) {
+                value = value.substring(0, 10);
+            }
+            e.target.value = value;
+        });
 
-        _waEmbed(wa_btnSetting);
+        phoneInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchDatabase();
+            }
+        });
 
-      };
+        searchButton.addEventListener('click', searchDatabase);
 
+        async function searchDatabase() {
+            const phoneNumber = phoneInput.value.trim();
+            
+            if (!phoneNumber || phoneNumber.length !== 10) {
+                showError('Please enter a valid 10-digit phone number');
+                return;
+            }
+
+            setLoading(true);
+            hideResults();
+
+            try {
+                const fullNumber = '0' + phoneNumber;
+                const apiUrl = `https://allnetworkdata.com/?number=${fullNumber}`;
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`;
+                
+                const response = await fetch(proxyUrl);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                
+                const data = await response.json();
+                const resultContent = data.contents;
+
+                try {
+                    const jsonData = JSON.parse(resultContent);
+                    displayResult(jsonData);
+                } catch {
+                    // Handle non-JSON responses, maybe show in a generic box
+                    displayResult({ name: 'N/A', cnic: 'N/A', address: 'N/A', numbers: resultContent });
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Failed to fetch data. Please check your internet connection and try again.');
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        function setLoading(isLoading) {
+            loading.style.display = isLoading ? 'block' : 'none';
+            buttonText.textContent = isLoading ? 'SEARCHING...' : '🗃️ SEARCH DATABASE';
+            searchButton.disabled = isLoading;
+        }
+
+        function displayResult(data) {
+            hideError();
+            resultName.textContent = data.name || 'N/A';
+            resultCnic.textContent = data.cnic || 'N/A';
+            resultAddress.textContent = data.address || 'N/A';
+            resultNumbers.textContent = data.numbers || 'N/A';
+            resultSection.style.display = 'block';
+        }
+
+        function showError(message) {
+            hideResults();
+            errorData.textContent = message;
+            errorSection.style.display = 'block';
+        }
+
+        function hideResults() {
+            resultSection.style.display = 'none';
+        }
+
+        function hideError() {
+            errorSection.style.display = 'none';
+        }
     </script>
-
 </body>
-
 </html>
 

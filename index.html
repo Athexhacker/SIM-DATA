@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&#120328;&#120366;&#120367;&#120354; &#120345;&#120354;&#120363;&#120369;&#120368;&#120368;&#120373; Personal Database</title>
+  <meta name="description" content="Demo lookup UI &mdash; &#120328;&#120366;&#120367;&#120354; &#120345;&#120354;&#120363;&#120369;&#120368;&#120368;&#120373;.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=Noto+Naskh+Arabic:wght@400;700&amp;family=Righteous&amp;display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <style>
+    /* --- Same styling unchanged --- */
+    :root{
+      --bg:#1a1a1a; --card:#2b2b2b; --border:#444; --txt:#e0e0e0; --muted:#a0a0a0;
+      --accent:#007bff; --accent2:#2c8eff; --urdu:#f8e100; --shadow:rgba(0,0,0,.4);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{
+      font-family:'Roboto',sans-serif; background:var(--bg); color:var(--txt);
+      min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center; line-height:1.6;
+    }
+    .container{width:100%; max-width:650px; margin:20px auto; padding:0 20px}
+    .header-title{
+      font-family:'Righteous',cursive; font-size:2rem; letter-spacing:1px; margin-bottom:20px;
+      background:linear-gradient(90deg,#29a6ff,#00e676); -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow:0 2px 8px rgba(0,0,0,.4);
+    }
+    .header-image{width:100%; max-width:200px; height:auto; border-radius:12px; margin:20px auto 40px auto;
+      box-shadow:0 8px 22px var(--shadow); animation:fadeIn .8s ease-out}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:15px; padding:30px; margin-bottom:30px;
+      box-shadow:0 5px 15px var(--shadow); animation:fadeIn .8s ease-out}
+    #query{width:100%; padding:18px; border:1px solid var(--border); border-radius:10px; background:#171717; color:var(--txt); font-size:1.05rem; text-align:center}
+    #query:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,123,255,.2)}
+    .search-btn{width:100%; margin-top:18px; padding:16px; border:none; border-radius:10px; background:var(--accent); color:#fff; font-weight:700; cursor:pointer}
+    .search-btn:hover{background:var(--accent2)}
+    .warning{color:var(--muted); margin-top:10px; font-size:.9rem}
+    #results{margin-top:20px; display:flex; flex-direction:column; gap:12px}
+    .result-box{background:#1f1f1f; border:1px solid var(--border); border-radius:10px; padding:18px; text-align:left}
+    .label{color:var(--muted); font-weight:500}
+    .value{font-weight:500}
+    .highlight{color:var(--accent2); font-weight:700}
+    #noData{display:none; margin-top:20px; border:1px solid var(--accent); border-radius:12px; background:#1f1f1f; padding:20px}
+    #noData h4{color:var(--accent); margin-bottom:8px}
+    #noData p{font-family:'Noto Naskh Arabic',serif; color:var(--urdu)}
+    .contact-card{margin-top:10px}
+    .brand{
+      font-family:'Righteous',cursive; font-size:2.2rem; letter-spacing:2px; text-transform:uppercase;
+      background:linear-gradient(90deg,#29a6ff,#00e676); -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow:0 2px 10px rgba(0,0,0,.45); margin-bottom:12px;
+    }
+    .contact-list{list-style:none; padding:0; display:flex; flex-direction:column; gap:10px}
+    .contact-list li{background:#2a2a2a; border:1px solid var(--border); border-radius:10px; overflow:hidden}
+    .contact-list a{display:block; padding:12px 16px; color:#fff; text-decoration:none; font-weight:600}
+    .contact-list a:hover{background:var(--accent)}
+    footer{margin-top:auto; padding:18px; color:var(--muted)}
+    .whatsapp-fab{
+      position:fixed; right:22px; bottom:22px; width:60px; height:60px; border-radius:50%;
+      background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center;
+      box-shadow:0 6px 16px rgba(0,0,0,.3); font-size:2rem; cursor:pointer; z-index:10;
+    }
+    .hidden{display:none}
+    .loading-container{margin-top:10px}
+    .loading-bar{width:100%; height:8px; background:var(--border); border-radius:4px; overflow:hidden; position:relative}
+    .loading-bar::after{content:''; position:absolute; left:0; top:0; height:100%; width:0; background:var(--accent);
+      animation:loading 2s infinite ease-in-out}
+    .loading-text{margin-top:8px; font-size:.95rem; color:var(--accent); font-weight:500}
+    @keyframes fadeIn{from{opacity:0; transform:translateY(15px)} to{opacity:1; transform:translateY(0)}}
+    @keyframes loading{0%{width:0} 50%{width:100%} 100%{width:0; transform:translateX(100%)}}
+  </style>
+</head>
+<body>
+  <!-- WhatsApp FAB -->
+  <div class="whatsapp-fab" onclick="window.open('https://wa.me/+923141495075?text=Hi','_blank')">
+    <i class="fa-brands fa-whatsapp"></i>
+  </div>
+
+  <div class="container">
+    <h1 class="header-title">ATHEX SIM DATA</h1>
+    <img src="images/logo.png" class="header-image">
+    <div class="card">
+      <input type="text" id="query" placeholder="Enter Mobile e.g. 030000XXXXX">
+      <button class="search-btn" onclick="searchData()">Search <i class="fa fa-search"></i></button>
+      <p class="warning">Enter Number Like This: 03000000000</p>
+      <div id="loading-spinner" class="loading-container hidden">
+        <div class="loading-bar"></div>
+        <div class="loading-text">Getting Data...</div>
+      </div>
+    </div>
+    <div id="results"></div>
+    <div id="noData">
+      <h4>DATA NOT &#128683; FOUND!</h4>
+      <p>&#1575;&#1587; &#1606;&#1605;&#1576;&#1585; &#1705;&#1575; &#1672;&#1740;&#1657;&#1575; &#1583;&#1587;&#1578;&#1740;&#1575;&#1576; &#1606;&#1729;&#1740;&#1722; &#1729;&#1746;&#1748; &#1605;&#1586;&#1740;&#1583; &#1605;&#1593;&#1604;&#1608;&#1605;&#1575;&#1578; &#1705;&#1740;&#1604;&#1574;&#1746; &#1585;&#1575;&#1576;&#1591;&#1729; &#1705;&#1585;&#1740;&#1722;&#1748;</p>
+      <a class="search-btn" style="display:inline-block;width:auto;margin-top:10px" href="https://wa.me/+923141495075?text=I+Want+Help" target="_blank">
+        Contact on WhatsApp
+      </a>
+    </div>
+    <div class="card contact-card">
+      <h2 class="brand">ATHEX H4CK3R</h2>
+      <ul class="contact-list">
+        <li><a href="https://wa.me/+923490916663?text=Hey+ATHEX" target="_blank"><i class="fa-brands fa-whatsapp"></i> Admin WhatsApp</a></li>
+        <li><a href="https://whatsapp.com/channel/0029VbAkUPaJ3juxbz1yl926" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp Channel</a></li>
+      </ul>
+    </div>
+  </div>
+  <footer>&copy; 2025 A T H E X. All Rights Reserved.</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script>
+    function toast(msg,type='success'){
+      const bg = type==='success' ? 'linear-gradient(to right,#28a745,#218838)' : 'linear-gradient(to right,#dc3545,#c82333)';
+      Toastify({text:msg,duration:2500,gravity:'bottom',position:'center',close:true,backgroundColor:bg}).showToast();
+    }
+
+    function copyResult(btn){
+      const box = btn.closest('.result-box');
+      if(!box) return;
+      const txt = box.innerText.replace(/\n{2,}/g,'\n').trim();
+      navigator.clipboard.writeText(txt).then(()=>toast('Copied!'));
+    }
+
+    function render(list){
+      const results = document.getElementById('results');
+      const unique = [];
+      const seen = new Set();
+      for(const r of list){
+        const key = r.CNIC + r.Mobile;
+        if(!seen.has(key)){ seen.add(key); unique.push(r); }
+      }
+      results.innerHTML = unique.map(r => `
+        <div class="result-box">
+          <p><span class="label">Name: <span class="value highlight">${r.Name ?? 'N/A'}
+          <p><span class="label">Mobile: <span class="value">${r.Mobile ?? 'N/A'}
+          <p><span class="label">CNIC: <span class="value highlight">${r.CNIC ?? 'N/A'}
+          <p><span class="label">Address: <span class="value highlight">${r.Address ?? 'N/A'}
+          <p><span class="label">Country: <span class="value">${r.Country ?? 'N/A'}
+          <p style="margin-top:10px; font-size:0.9rem; color:#aaa;">Developer: <span style="color:#2c8eff; font-weight:bold;">&#120328;&#120366;&#120367;&#120354; &#120345;&#120354;&#120363;&#120369;&#120368;&#120368;&#120373;
+          <div class="action-buttons"><button class="copy-btn" onclick="copyResult(this)">Copy Data
+        
+      `).join('');
+    }
+
+    async function searchData(){
+      const q = (document.getElementById('query').value || '').trim().replace(/\s+/g,'');
+      const results = document.getElementById('results');
+      const noData  = document.getElementById('noData');
+      const spinner = document.getElementById('loading-spinner');
+      results.innerHTML = ''; noData.style.display = 'none';
+      if(!/^03\d{9}$/.test(q)){ toast('Please enter a valid number','error'); return; }
+      spinner.classList.remove('hidden');
+      try {
+        // &#9989; Replaced API
+        const res = await fetch(`https://www.3patticenter.com/famofc/api/database.php?num=${q}`);
+        const json = await res.json();
+        spinner.classList.add('hidden');
+        if(json.status === "success" && json.data && json.data.length){
+          render(json.data);
+          toast('Search complete!');
+        } else {
+          noData.style.display = 'block';
+          toast('No data found for this number.','error');
+        }
+      } catch(err){
+        spinner.classList.add('hidden');
+        noData.style.display = 'block';
+        toast('&#9888;&#65039; API Error: Unable to fetch data','error');
+      }
+    }
+  </script>
+</body>
+</html>

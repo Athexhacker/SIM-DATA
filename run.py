@@ -216,7 +216,6 @@ class SIMDatabaseScanner:
                 print(Fore.YELLOW + "🖥️ SYSTEM INFORMATION")
                 print(Fore.CYAN + "═" * 60)
                 print(Fore.GREEN + f"\nVersion: {self.version}")
-                print(Fore.GREEN + f"API Endpoint: {self.api_url}")
                 print(Fore.GREEN + f"Python Version: {sys.version}")
                 print(Fore.GREEN + f"Platform: {sys.platform}")
                 print(Fore.GREEN + f"Current Time: {datetime.now()}")
@@ -255,3 +254,4 @@ if __name__ == "__main__":
     except Exception as e:
         print(Fore.RED + f"\nUnexpected error: {e}")
         print(Fore.YELLOW + "Please check your internet connection and try again.")
+

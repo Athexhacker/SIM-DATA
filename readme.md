@@ -1,8 +1,8 @@
 <a href="https://github.com/Athexhacker/SIM-DATA"><img src="logo.png" alt="0" border="0" /></a> 
 
 # 📡 Pakistani SIM Database Lookup Tool
-![Geo-Phone](https://img.shields.io/badge/Animated-Cool%2520ASCII-blueviolet)
-![Geo-Phone](https://img.shields.io/badge/Python-3.8%252B-blue)
+![Geo-Phone](https://img.shields.io/badge/Animated-Cool-blueviolet)
+![Geo-Phone](https://img.shields.io/badge/Python-3.8-blue)
 ![Geo-Phone](https://img.shields.io/badge/License-MIT-green)
 ![Geo-Phone](https://img.shields.io/badge/Version-2.0-red)
 
@@ -140,5 +140,6 @@ Ensure you're using the latest version
 Made with ❤️ by ATHEX BLACK HAT TEAM
 
 "Information is power, but presentation is everything."
+
 
 

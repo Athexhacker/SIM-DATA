@@ -61,8 +61,6 @@ python run.py
 
 # 🎮 Usage
 Basic Usage
-bash
-python sim_lookup.py
 Available Commands
 Command	Description
 3001234567	Query a SIM number
@@ -102,7 +100,7 @@ Results Display
 │ 🏢 NETWORK: Jazz
 │ 📍 LOCATION: Lahore
 │ 🏷️ STATUS: Active
-│ 👤 NAME: John Doe
+│ 👤 NAME: xxxxxxxx
 JSON Output
 json
 {
@@ -111,7 +109,7 @@ json
   "network": "Jazz",
   "location": "Lahore",
   "status": "Active",
-  "name": "John Doe",
+  "name": "xxxxxxxx",
   "credit": "FAMOFC"
 }
 🛠️ API Integration
@@ -131,7 +129,7 @@ json
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 🙏 Acknowledgments
-API Provider: fam-official.serv00.net
+API Provider: fam-official
 
 Creator: ATHEX BLACK HAT
 
@@ -143,8 +141,4 @@ Made with ❤️ by ATHEX BLACK HAT TEAM
 
 "Information is power, but presentation is everything."
 
-<div align="center">
-![Geo-Phone](https://img.shields.io/github/stars/Athexhacker/SIM-DATA?style=social)
-![Geo-Phone](https://img.shields.io/github/forks/Athexhacker/SIM-DATA?style=social)
-![Geo-Phone](https://img.shields.io/github/watchers/Athexhacker/SIM-DATA?style=social)
-</div>
+
